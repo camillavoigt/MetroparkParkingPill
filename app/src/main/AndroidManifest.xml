@@ -42,6 +42,9 @@
                 android:label="@string/title_activity_map_overview"
                 android:parentActivityName="com.example.metroparkparkingpill.MainActivity">
         </activity>
+        <activity android:name=".ParkingInfo"
+                  android:parentActivityName="com.example.metroparkparkingpill.MapOverview">
+        </activity>
 
     </application>
 
