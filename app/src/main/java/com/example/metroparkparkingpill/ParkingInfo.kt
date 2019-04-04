@@ -24,14 +24,10 @@ class ParkingInfo : AppCompatActivity() {
             .build()
 
         val areaInfoService = retrofit.create(AreaInfoService::class.java);
-        Log.i("Test", areaInfoService.toString());
-
-        Log.i("Test", "API her");
         //New Thread
         t = Thread {
             while (!Thread.interrupted()) {
                 val call = areaInfoService.getAreaInfo("1");
-                Log.i("Test", "API start");
                 try {
                     val response = call.execute().body()!!
                     val areaNAme = Html.fromHtml(response.areaName);
@@ -55,6 +51,7 @@ class ParkingInfo : AppCompatActivity() {
                     e.printStackTrace();
                     Log.i("Test", e.toString());
                 }
+                t.interrupt();
             }
         }
         t.start();
