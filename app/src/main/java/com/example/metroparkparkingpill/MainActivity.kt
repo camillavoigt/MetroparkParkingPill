@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun goToMap(view: View){
+    fun goToMap(view: View) {
         val intent = Intent(this, MapOverview::class.java)
         startActivity(intent)
     }
