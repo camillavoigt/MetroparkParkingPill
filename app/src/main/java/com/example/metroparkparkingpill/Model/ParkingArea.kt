@@ -1,36 +1,32 @@
 package com.example.metroparkparkingpill.Model
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
 data class Data(
     val parkingAreas: List<ParkingArea>
 )
 
 data class ParkingArea(
-    val allowedParkingTime: Int?,
-    val allpos: List<Allpos>?,
+    val position: List<Position>?,
     val areaAddress: String?,
     val areaName: String,
-    val areaObservationTime: Int?,
-    val markerLat: Any?,
-    val markerLng: Any?,
     val parkingAreaId: Int?,
-    val parkingSpace: ParkingSpace?,
-    val parkingSpaceList: List<Int>?
+    val parkingSpaceList: List<ParkingSpace>?
 )
 
-data class Allpos(
-    val markerlat: Int?,
-    val markerlong: Int?
-)
-
+@JsonIgnoreProperties
 data class ParkingSpace(
+    val observationTime: Int?,
+    val allowedParkingTime: Int?,
     val arrivalTime: String?,
     val occupied: Any?,
     val parkingAreaId: Int?,
     val parkingSpaceId: Int?,
-    val pos: Pos?
+    val sensorID: String?,
+    val position: Position?
 )
 
-data class Pos(
+data class Position(
     val markerlat: Int?,
     val markerlong: Int?
 )

@@ -6,4 +6,7 @@
     <string name="parking_area_info_button">Parking info</string>
     <string name="area_address">Area address</string>
     <string name="area_parking_time">Parking time</string>
+    <string name="area_number_of_spaces">Spaces</string>
+    <string name="area_number_of_ill_cars">Illegally parked cars</string>
+    <string name="area_number_of_occ_spaces">Occupied spaces</string>
 </resources>
