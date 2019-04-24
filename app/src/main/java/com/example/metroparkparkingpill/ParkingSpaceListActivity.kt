@@ -11,13 +11,19 @@ class ParkingSpaceListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parking_space_list)
 
+        val areaId = intent.getIntExtra("id", -1);
+
+        if(areaId == -1) {
+            throw Exception("No id provided. Please Fix Camilla!");
+        }
+
         val thread = Thread {
             val dataStorage = DataStorage()
             val data = dataStorage.FetchData()
 
             runOnUiThread {
                 recyclerView.apply {
-                    adapter = ParkingSpaceRecyclerAdapter(data.parkingAreas[0].parkingSpaceList)
+                    adapter = ParkingSpaceRecyclerAdapter(data.parkingAreas.find { it.parkingAreaId == areaId }!!.parkingSpaceList)
                     layoutManager = LinearLayoutManager(this@ParkingSpaceListActivity)
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.metroparkparkingpill
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -23,7 +24,10 @@ class ParkingAreaListActivity : AppCompatActivity() {
                 }
 
                 adapter.onItemSelected = {
-                    println("Area selected: " + it);
+                    println("Area selected: " + it + "h");
+                    val intent = Intent(this, ParkingSpaceListActivity::class.java)
+                    intent.putExtra("id", it.parkingAreaId)
+                    startActivity(intent)
                 }
             }
         }
