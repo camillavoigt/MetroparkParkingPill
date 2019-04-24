@@ -17,7 +17,7 @@ class ParkingSpaceListActivity : AppCompatActivity() {
 
             runOnUiThread {
                 recyclerView.apply {
-                    adapter = ParkingSpaceRecyclerAdapter(data)
+                    adapter = ParkingSpaceRecyclerAdapter(data.parkingAreas[0].parkingSpaceList)
                     layoutManager = LinearLayoutManager(this@ParkingSpaceListActivity)
                 }
             }

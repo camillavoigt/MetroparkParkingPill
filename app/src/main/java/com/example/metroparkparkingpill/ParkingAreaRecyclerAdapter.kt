@@ -1,11 +1,15 @@
 package com.example.metroparkparkingpill
 
+import android.content.Intent
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.metroparkparkingpill.Model.Data
+import com.example.metroparkparkingpill.Model.ParkingArea
 import kotlinx.android.synthetic.main.parking_area_list_element_view.view.*
 
 class ParkingAreaRecyclerAdapter(val data: Data) :
@@ -23,6 +27,8 @@ class ParkingAreaRecyclerAdapter(val data: Data) :
         )
     }
 
+    var onItemSelected: ((ParkingArea) -> Unit)? = null
+
     override fun getItemCount(): Int {
         return data.parkingAreas.size
     }
@@ -34,6 +40,13 @@ class ParkingAreaRecyclerAdapter(val data: Data) :
         holder.totalCount.text = area.parkingSpaceList.size.toString()
         holder.occupiedCount.text = area.parkingSpaceList.count { it.occupied }.toString()
         holder.illegallyCount.text = "2" //TODO
+
+        holder.itemView.setOnClickListener{
+            val callback = onItemSelected;
+            if(callback != null) {
+                callback(area);
+            }
+        }
     }
 
     class ParkingAreaHolder(

@@ -18,7 +18,7 @@ data class ParkingArea(
 data class ParkingSpace(
     val observationTime: Int,
     val allowedParkingTime: Int,
-    val arrivalTime: String,
+    val arrivalTime: Long,
     val occupied: Boolean,
     val parkingAreaId: Int,
     val parkingSpaceId: Int,

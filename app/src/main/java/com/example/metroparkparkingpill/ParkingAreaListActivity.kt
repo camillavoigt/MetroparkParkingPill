@@ -15,9 +15,15 @@ class ParkingAreaListActivity : AppCompatActivity() {
             val data = dataStorage.FetchData()
 
             runOnUiThread {
+                val adapter = ParkingAreaRecyclerAdapter(data);
+
                 recyclerView.apply {
-                    adapter = ParkingAreaRecyclerAdapter(data)
+                    this.adapter = adapter
                     layoutManager = LinearLayoutManager(this@ParkingAreaListActivity)
+                }
+
+                adapter.onItemSelected = {
+                    println("Area selected: " + it);
                 }
             }
         }
