@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MapOverview">
+        tools:context=".MapOverviewActivity">
 
     <Button
             android:layout_width="150dp"
@@ -24,7 +24,7 @@
               android:layout_width="match_parent"
               android:layout_height="0dp"
               android:id="@+id/map"
-              tools:context=".MapOverview"
+              tools:context=".MapOverviewActivity"
               android:name="com.google.android.gms.maps.SupportMapFragment"
               map:layout_constraintEnd_toEndOf="parent"
               map:layout_constraintStart_toStartOf="parent"

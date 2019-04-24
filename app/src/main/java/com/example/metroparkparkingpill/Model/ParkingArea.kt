@@ -7,26 +7,26 @@ data class Data(
 )
 
 data class ParkingArea(
-    val position: List<Position>?,
-    val areaAddress: String?,
+    val position: List<Position>,
+    val areaAddress: String,
     val areaName: String,
-    val parkingAreaId: Int?,
-    val parkingSpaceList: List<ParkingSpace>?
+    val parkingAreaId: Int,
+    val parkingSpaceList: List<ParkingSpace>
 )
 
-@JsonIgnoreProperties
+//@JsonIgnoreProperties
 data class ParkingSpace(
-    val observationTime: Int?,
-    val allowedParkingTime: Int?,
-    val arrivalTime: String?,
-    val occupied: Any?,
-    val parkingAreaId: Int?,
-    val parkingSpaceId: Int?,
-    val sensorID: String?,
-    val position: Position?
+    val observationTime: Int,
+    val allowedParkingTime: Int,
+    val arrivalTime: String,
+    val occupied: Boolean,
+    val parkingAreaId: Int,
+    val parkingSpaceId: Int,
+    val sensorID: String,
+    val position: Position
 )
 
 data class Position(
-    val markerlat: Int?,
-    val markerlong: Int?
+    val markerlat: Int,
+    val markerlong: Int
 )

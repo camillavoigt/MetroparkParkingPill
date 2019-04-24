@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <TextView
+            android:text="ID:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spaceIdText" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spaceIdTextView" android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@+id/spaceIdText" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"/>
+    <TextView
+            android:text="Observation time:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/observationTimeText" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/spaceIdTextView" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/observationTimeTextView" app:layout_constraintStart_toEndOf="@+id/observationTimeText"
+            android:layout_marginStart="2dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+    <TextView
+            android:text="Occupied:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spaceOccupiedCountText"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/observationTimeTextView"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spaceOccupiedCountTextView" android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@+id/spaceOccupiedCountText" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"/>
+    <TextView
+            android:text="Arrival time:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/arrivalTimeText" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/spaceIdText"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/arrivalTimeTextView" android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@+id/arrivalTimeText"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/observationTimeText"/>
+    <TextView
+            android:text="Parking time:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parkingTimeText" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/arrivalTimeTextView" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/observationTimeText"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parkingTimeTextView" android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@+id/parkingTimeText" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/observationTimeTextView"/>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
+                                             android:layout_height="wrap_content">
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/areaNameTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" android:textSize="18sp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/areaAddressTextView" app:layout_constraintStart_toEndOf="@+id/areaNameTextView"
+            android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" android:textSize="18sp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/areaTotalSpaceCountTextView"
+            android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@+id/spacesText" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/areaAddressTextView"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/areaOccupiedCountTextView"
+            app:layout_constraintStart_toEndOf="@+id/spaceOccupiedCountText"
+            android:layout_marginStart="2dp"
+            app:layout_constraintTop_toTopOf="@+id/spaceOccupiedCountText"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/areaIllegallyParkedCarsCountTextView"
+            app:layout_constraintStart_toEndOf="@+id/illegalText"
+            android:layout_marginStart="2dp"
+            app:layout_constraintTop_toTopOf="@+id/illegalText"/>
+    <TextView
+            android:text="Spaces:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spacesText" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/areaNameTextView"/>
+    <TextView
+            android:text="Occupied:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spaceOccupiedCountText" android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/areaTotalSpaceCountTextView"
+            app:layout_constraintTop_toTopOf="@+id/areaTotalSpaceCountTextView"/>
+    <TextView
+            android:text="Illegal:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/illegalText" app:layout_constraintStart_toEndOf="@+id/areaOccupiedCountTextView"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="@+id/areaOccupiedCountTextView"/>
+</android.support.constraint.ConstraintLayout>

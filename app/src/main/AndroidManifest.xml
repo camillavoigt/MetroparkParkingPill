@@ -10,13 +10,17 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true">
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -38,15 +42,15 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".MapOverview"
+                android:name=".MapOverviewActivity"
                 android:label="@string/title_activity_map_overview"
                 android:parentActivityName="com.example.metroparkparkingpill.MainActivity">
         </activity>
-        <activity android:name=".ParkingInfo"
-                  android:parentActivityName="com.example.metroparkparkingpill.MapOverview">
+        <activity android:name=".ParkingAreaListActivity"
+                  android:parentActivityName="com.example.metroparkparkingpill.MapOverviewActivity">
         </activity>
         <activity android:name=".ParkingSpaceActivity"
-                  android:parentActivityName=".MapOverview">
+                  android:parentActivityName=".MapOverviewActivity">
         </activity>
 
     </application>

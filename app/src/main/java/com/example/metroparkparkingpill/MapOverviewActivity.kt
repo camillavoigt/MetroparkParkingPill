@@ -18,7 +18,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.Marker
 
 
-class MapOverview : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MapOverviewActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
 
     private lateinit var mMap: GoogleMap
@@ -89,7 +89,7 @@ class MapOverview : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
     }
 
     fun goToParkingInfo(view: View) {
-        val intent = Intent(this, ParkingInfo::class.java)
+        val intent = Intent(this, ParkingAreaListActivity::class.java)
         startActivity(intent)
     }
 
