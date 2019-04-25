@@ -18,10 +18,10 @@ class ParkingSpaceListActivity : AppCompatActivity() {
         }
 
         val thread = Thread {
-            val dataStorage = DataStorage()
-            val data = dataStorage.FetchData()
 
             runOnUiThread {
+                val data = DataStorage.getInstance(this).getData()
+
                 recyclerView.apply {
                     adapter = ParkingSpaceRecyclerAdapter(data.parkingAreas.find { it.parkingAreaId == areaId }!!.parkingSpaceList)
                     layoutManager = LinearLayoutManager(this@ParkingSpaceListActivity)

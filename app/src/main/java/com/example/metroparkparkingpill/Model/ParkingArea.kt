@@ -14,7 +14,6 @@ data class ParkingArea(
     val parkingSpaceList: List<ParkingSpace>
 )
 
-//@JsonIgnoreProperties
 data class ParkingSpace(
     val observationTime: Int,
     val allowedParkingTime: Int,

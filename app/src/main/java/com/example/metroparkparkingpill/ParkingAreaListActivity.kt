@@ -12,11 +12,10 @@ class ParkingAreaListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_parking_area_list)
 
         val thread = Thread {
-            val dataStorage = DataStorage()
-            val data = dataStorage.FetchData()
+            val data = DataStorage.getInstance(this).getData()
 
             runOnUiThread {
-                val adapter = ParkingAreaRecyclerAdapter(data);
+                val adapter = ParkingAreaRecyclerAdapter(data)
 
                 recyclerView.apply {
                     this.adapter = adapter
