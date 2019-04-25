@@ -1,9 +1,5 @@
 package com.example.metroparkparkingpill
 
-import android.content.Intent
-import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.metroparkparkingpill.Model.ParkingSpace
 import kotlinx.android.synthetic.main.parking_space_list_element_view.view.*
+import java.time.Instant
+import java.time.ZoneId.systemDefault
+import java.time.Instant.ofEpochMilli
 import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneId.of
+
 
 class ParkingSpaceRecyclerAdapter(val parkingSpaces: List<ParkingSpace>) :
     RecyclerView.Adapter<ParkingSpaceRecyclerAdapter.ParkingSpaceHolder>() {
@@ -20,7 +22,7 @@ class ParkingSpaceRecyclerAdapter(val parkingSpaces: List<ParkingSpace>) :
         val view = LayoutInflater.from(parent.context).inflate(R.layout.parking_space_list_element_view, parent, false)
         return ParkingSpaceHolder(
             view,
-            view.spaceIdTextView,
+            view.spaceNameTextView,
             view.observationTimeTextView,
             view.spaceOccupiedCountTextView,
             view.arrivalTimeTextView,
@@ -33,19 +35,41 @@ class ParkingSpaceRecyclerAdapter(val parkingSpaces: List<ParkingSpace>) :
     }
 
     override fun onBindViewHolder(holder: ParkingSpaceRecyclerAdapter.ParkingSpaceHolder, position: Int) {
-        val currentTime = System.currentTimeMillis()
-
         val parkingSpace = parkingSpaces[position]
-        holder.spaceId.text = parkingSpace.parkingSpaceId.toString()
+        val date: String
+
+        if (parkingSpace.arrivalTime < 1) {
+            date = ""
+        } else {
+            date = Instant.ofEpochMilli(parkingSpace.arrivalTime)
+                .atZone(ZoneId.systemDefault())
+                .toLocalTime().toString()
+        }
+
+        val currentDate = LocalDateTime.now()
+            .atZone(ZoneId.systemDefault())
+            .toEpochSecond()
+        val time = parkingSpace.arrivalTime / 1000
+        val stringTime = (currentDate - time)
+        val parkingTime: String
+
+
+        if (parkingSpace.arrivalTime < 1) {
+            parkingTime = ""
+        } else {
+            parkingTime = Instant.ofEpochSecond(stringTime).atZone(ZoneId.of("UTC")).toLocalTime().toString()
+        }
+
+        holder.spaceName.text = parkingSpace.parkingSpaceName
         holder.observationTime.text = parkingSpace.observationTime.toString()
         holder.occupied.text = parkingSpace.occupied.toString()
-        holder.arrivalTime.text = parkingSpace.arrivalTime.toString()
-        //holder.parkingTime.text = currentTime - parkingSpace.arrivalTime
+        holder.arrivalTime.text = date
+        holder.parkingTime.text = parkingTime
     }
 
     class ParkingSpaceHolder(
         view: View,
-        val spaceId: TextView,
+        val spaceName: TextView,
         val observationTime: TextView,
         val occupied: TextView,
         val arrivalTime: TextView,

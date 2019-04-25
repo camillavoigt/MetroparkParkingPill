@@ -20,7 +20,7 @@ data class ParkingSpace(
     val arrivalTime: Long,
     val occupied: Boolean,
     val parkingAreaId: Int,
-    val parkingSpaceId: Int,
+    val parkingSpaceName: String,
     val sensorID: String,
     val position: Position
 )
