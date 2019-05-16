@@ -9,6 +9,7 @@ data class Data(
 data class ParkingArea(
     val position: List<Position>,
     val areaAddress: String,
+    val customer: String,
     val areaName: String,
     val parkingAreaId: Int,
     val parkingSpaceList: List<ParkingSpace>
