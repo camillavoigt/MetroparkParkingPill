@@ -33,6 +33,8 @@ class ParkingAreaRecyclerAdapter(val data: Data) :
         return data.parkingAreas.size
     }
 
+    // https://developer.android.com/guide/topics/ui/layout/cardview
+
     override fun onBindViewHolder(holder: ParkingAreaRecyclerAdapter.ParkingAreaHolder, position: Int) {
         val area = data.parkingAreas[position]
         holder.areaName.text = area.areaName

@@ -14,7 +14,7 @@
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spaceIdTextView" android:layout_marginStart="2dp"
+            android:id="@+id/spaceNameTextView" android:layout_marginStart="2dp"
             app:layout_constraintStart_toEndOf="@+id/spaceIdText" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp"/>
     <TextView
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/observationTimeText" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@+id/spaceIdTextView" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/spaceNameTextView" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp"/>
     <TextView
             android:text="TextView"

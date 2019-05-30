@@ -9,6 +9,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.Console
 import java.io.IOException
 import java.net.URL
 import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
@@ -23,14 +24,10 @@ class DataStorage(context: Context) {
 
     fun FetchData() {
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://metroparkparking.tk/").addConverterFactory(GsonConverterFactory.create())
-            .build()
-
         try {
             val mapper = jacksonObjectMapper()
             mapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, false)
-            parkingdata = mapper.readValue<Data>(URL("http://metroparkparking.tk/alldata"))
+            parkingdata = mapper.readValue(URL("http://metroparkparking.tk/alldata"))
 
 
         } catch (e: IOException) {

@@ -9,13 +9,14 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
 import android.support.v4.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.location.Location
+import com.example.metroparkparkingpill.Model.Data
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.*
+import java.util.*
 
 
 class MapOverviewActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -39,15 +40,6 @@ class MapOverviewActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.O
 
     override fun onMarkerClick(p0: Marker?) = false
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -55,6 +47,7 @@ class MapOverviewActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.O
         mMap.setOnMarkerClickListener(this)
 
         setUpMap()
+        addGraphics()
     }
 
     companion object {
@@ -73,13 +66,11 @@ class MapOverviewActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.O
             )
             return
         }
-        // 1
+
         mMap.isMyLocationEnabled = true
 
-        // 2
         fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
-            // Got last known location. In some rare situations this can be null.
-            // 3
+
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
@@ -92,5 +83,74 @@ class MapOverviewActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.O
         val intent = Intent(this, ParkingAreaListActivity::class.java)
         startActivity(intent)
     }
+
+    fun addGraphics() {
+
+        val positionData = DataStorage.getInstance(this).getData()
+
+        positionData.parkingAreas.forEach { area ->
+
+            // all positions in area
+
+            val posMarkerArea: ArrayList<LatLng> = ArrayList()
+            var polyoption = PolygonOptions()
+            area.position.forEach { pos ->
+                val marker = LatLng(pos.markerlat, pos.markerlong)
+                posMarkerArea.add(marker)
+            }
+            posMarkerArea.forEach { position ->
+                polyoption.add(position)
+
+            }
+
+
+            // all spaces
+            val posMarkerSpace: ArrayList<MarkerOptions> = ArrayList()
+            area.parkingSpaceList.forEach { space ->
+
+                val marker = LatLng(space.position.markerlat, space.position.markerlong)
+                val markeroption = MarkerOptions().position(marker).title(space.parkingSpaceName)
+
+
+                if(space.occupied) {
+                    markeroption.icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+
+                    val currentTime = Date()
+                    val currentTimeMil = currentTime.time
+
+                    val allowedParkTimeMil = space.allowedParkingTime * 60000
+
+                    if (currentTimeMil > allowedParkTimeMil + space.arrivalTime){
+                        markeroption.icon(BitmapDescriptorFactory
+                            .defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                    }
+                } else {
+                    markeroption.icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                }
+
+                posMarkerSpace.add(markeroption)
+
+            }
+
+            posMarkerSpace.forEach { marker ->
+                mMap.addMarker(marker)
+            }
+
+
+
+            mMap.addPolygon(polyoption.clickable(true))
+
+        }
+
+
+/*
+        val sydney = LatLng(-34.0, 151.0)
+        var marker = MarkerOptions().position(sydney).title("Marker in Sydney")
+        mMap.addMarker(marker)
+        */
+    }
+
 
 }
