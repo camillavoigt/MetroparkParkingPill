@@ -11,9 +11,11 @@ import android.widget.TextView
 import com.example.metroparkparkingpill.Model.Data
 import com.example.metroparkparkingpill.Model.ParkingArea
 import kotlinx.android.synthetic.main.parking_area_list_element_view.view.*
+import java.util.*
 
 class ParkingAreaRecyclerAdapter(val data: Data) :
     RecyclerView.Adapter<ParkingAreaRecyclerAdapter.ParkingAreaHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ParkingAreaHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.parking_area_list_element_view, parent, false);
@@ -28,12 +30,9 @@ class ParkingAreaRecyclerAdapter(val data: Data) :
     }
 
     var onItemSelected: ((ParkingArea) -> Unit)? = null
-
     override fun getItemCount(): Int {
         return data.parkingAreas.size
     }
-
-    // https://developer.android.com/guide/topics/ui/layout/cardview
 
     override fun onBindViewHolder(holder: ParkingAreaRecyclerAdapter.ParkingAreaHolder, position: Int) {
         val area = data.parkingAreas[position]
@@ -41,12 +40,26 @@ class ParkingAreaRecyclerAdapter(val data: Data) :
         holder.areaAddress.text = area.areaAddress
         holder.totalCount.text = area.parkingSpaceList.size.toString()
         holder.occupiedCount.text = area.parkingSpaceList.count { it.occupied }.toString()
-        holder.illegallyCount.text = "2" //TODO
 
-        holder.itemView.setOnClickListener{
+        var countIllegal = 0
+        area.parkingSpaceList.forEach { space ->
+
+            val currentTime = Date()
+            val currentTimeMil = currentTime.time
+
+            val allowedParkTimeMil = space.allowedParkingTime * 60000
+
+            if (currentTimeMil > allowedParkTimeMil + space.arrivalTime) {
+                countIllegal++
+            }
+        }
+
+        holder.illegallyCount.text = countIllegal.toString()
+
+        holder.itemView.setOnClickListener {
             val callback = onItemSelected;
-            if(callback != null) {
-                callback(area);
+            if (callback != null) {
+                callback(area)
             }
         }
     }

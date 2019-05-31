@@ -1,7 +1,5 @@
 package com.example.metroparkparkingpill.Model
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-
 data class Data(
     val parkingAreas: List<ParkingArea>
 )
