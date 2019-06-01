@@ -47,12 +47,13 @@
                 android:parentActivityName="com.example.metroparkparkingpill.MainActivity">
         </activity>
         <activity android:name=".ParkingAreaListActivity"
-                  android:parentActivityName="com.example.metroparkparkingpill.MapOverviewActivity">
-        </activity>
+                                     android:parentActivityName="com.example.metroparkparkingpill.MapOverviewActivity">
+    </activity>
         <activity android:name=".ParkingSpaceListActivity"
                   android:parentActivityName=".ParkingAreaListActivity">
         </activity>
-
+        <activity android:name=".DataTimer">
+        </activity>
     </application>
 
 </manifest>

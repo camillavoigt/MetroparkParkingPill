@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="wrap_content"
+                                             android:layout_height="wrap_content"
+                                             android:background="#FFFFFF">
 
     <TextView
             android:text="ID:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spaceIdText" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintBaseline_toBaselineOf="@+id/spaceNameTextView"
+            app:layout_constraintEnd_toStartOf="@+id/spaceNameTextView"
+            android:layout_marginEnd="1dp"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
@@ -50,8 +56,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/arrivalTimeText" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/spaceIdText"/>
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/spaceIdText"
+            app:layout_constraintBaseline_toBaselineOf="@+id/arrivalTimeTextView"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"

@@ -1,8 +1,6 @@
 package com.example.metroparkparkingpill
 
 import android.content.Context
-import android.text.Html
-import android.util.Log
 import com.example.metroparkparkingpill.Model.Data
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -11,7 +9,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.net.URL
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 
 // Data from API
@@ -21,23 +18,28 @@ class DataStorage(context: Context) {
 
     companion object : SingletonHolder<DataStorage, Context>(::DataStorage)
 
-    fun FetchData() {
+    val retrofit = Retrofit.Builder()
+        .baseUrl("http://metroparkparking.tk/").addConverterFactory(GsonConverterFactory.create())
+        .build()
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://metroparkparking.tk/").addConverterFactory(GsonConverterFactory.create())
-            .build()
+    /**
+     * This method fetch data from the server via the API
+     */
+    fun fetchData() {
 
         try {
             val mapper = jacksonObjectMapper()
             mapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, false)
-            parkingdata = mapper.readValue<Data>(URL("http://metroparkparking.tk/alldata"))
-
+            parkingdata = mapper.readValue(URL("http://metroparkparking.tk/alldata"))
 
         } catch (e: IOException) {
-            e.printStackTrace();
+            e.printStackTrace()
         }
     }
 
+    /**
+     * Receive the fetched data from the API
+     */
     fun getData(): Data {
         return parkingdata
     }

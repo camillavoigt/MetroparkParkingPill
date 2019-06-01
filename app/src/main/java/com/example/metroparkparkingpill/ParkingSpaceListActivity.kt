@@ -14,7 +14,7 @@ class ParkingSpaceListActivity : AppCompatActivity() {
         val areaId = intent.getIntExtra("id", -1);
 
         if(areaId == -1) {
-            throw Exception("No id provided. Please Fix Camilla!");
+            throw Exception("No id provided.")
         }
 
         val thread = Thread {
